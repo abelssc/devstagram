@@ -10,7 +10,7 @@
                 10 Seguidores 
             </p>
             <p class="text-gray-700">
-                11 Siguiendo 
+                22 Siguiendo desde grondoy
             </p>
             <p class="text-gray-700">
                 2 Publicaciones 
