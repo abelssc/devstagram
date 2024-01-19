@@ -18,6 +18,7 @@ use App\Http\Controllers\auth\RegisterController;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+// Route::get('/', view('home'))->name('home');
 Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post('/login', [LoginController::class, 'store'])->name('login');
 

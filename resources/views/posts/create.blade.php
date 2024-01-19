@@ -3,9 +3,8 @@
 
 @section('content')
     <div class="flex flex-col md:flex-row gap-8 my-8">
-        <div class="w-full md:w-6/12 min-h-60 bg-white p-8 flex justify-center items-center border-4 border-dotted text-gray-400">
-                Sube tu imagen aquí 
-        </div>
+        <form action="/any" method="POST" id="dropzone" class="dropzone w-full md:w-6/12 min-h-60 bg-white p-8 flex justify-center items-center border-4 border-dotted text-gray-400">
+        </form>
         <div class="w-full md:w-6/12">
             <form 
             action=""
