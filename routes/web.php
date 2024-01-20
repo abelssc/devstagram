@@ -27,6 +27,8 @@ Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
+
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

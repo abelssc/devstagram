@@ -11,7 +11,7 @@
         </form>
         <div class="w-full md:w-6/12">
             <form 
-            action=""
+            action="{{route('posts.store')}}"
             method="POST"
             class="w-full
                 bg-white
@@ -36,22 +36,23 @@
                     {{ session('status') }}
                 </div>
             @endsession
-            <label for="titulo">
+            <input type="hidden" name="imagen" value="{{ old('imagen') }}">
+            <label for="title">
                 <span>Titulo</span>
-                @error('titulo')
+                @error('title')
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
             </label>
-            <input type="titulo" name="titulo" id="titulo" 
-                value="{{ old('titulo') }}"
-                class="@error('titulo') !border-red-500 @enderror">
+            <input type="text" name="title" id="title" 
+                value="{{ old('title') }}"
+                class="@error('title') !border-red-500 @enderror">
             <label for="description">
                 <span>Descripción</span>
                 @error('description')
                     <small class="text-red-500">{{ $message }}</small>
                 @enderror
             </label>
-            <input type="description" name="description" id="description" class="@error('description') !border-red-500 @enderror">
+            <input type="text" name="description" id="description" class="@error('description') !border-red-500 @enderror">
             <button type="submit" class="bg-blue-500 text-white mt-5 rounded hover:bg-blue-800">Crear Publicación</button>
         </form>
         </div>

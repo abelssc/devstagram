@@ -20,6 +20,6 @@ class ImagenController extends Controller
         $image->resize(400,400);
         $image->save(public_path('img/posts/' . $name));
 
-        return response()->json(['image' => $name]);
+        return response()->json(['imagen' => $name]);
     }
 }
