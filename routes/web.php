@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
+use App\Http\Controllers\ImagenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +26,9 @@ Route::post('/login', [LoginController::class, 'store'])->name('login');
 Route::get('/register', [RegisterController::class, 'index'])->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
-Route::get('/{user:username}',[PostController::class, 'index'])->name('profile');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/{user:username}',[PostController::class, 'index'])->name('profile');

@@ -1,9 +1,13 @@
 @extends('layouts.app')
 @section('title', 'Crear Post')
+@push('styles')
+    <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+@endpush
 
 @section('content')
     <div class="flex flex-col md:flex-row gap-8 my-8">
-        <form action="/any" method="POST" id="dropzone" class="dropzone w-full md:w-6/12 min-h-60 bg-white p-8 flex justify-center items-center border-4 border-dotted text-gray-400">
+        <form action="{{route('imagenes.store')}}" enctype="multipart/form-data" method="POST" id="dropzone" class="dropzone w-full md:w-6/12 min-h-60 bg-white p-8 flex justify-center items-center border-4 border-dotted text-gray-400">
+            @csrf
         </form>
         <div class="w-full md:w-6/12">
             <form 
