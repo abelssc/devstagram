@@ -13,8 +13,17 @@ class PostController extends Controller
         $this->middleware(['auth']);
     }
     public function index(User $user){
+        $posts=Post::where('user_id', $user->id)->paginate(1);
+
+
         return view('profile', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $posts,
+        ]);
+    }
+    public function show(Post $post){
+        return view('posts.show', [
+            'post' => $post,
         ]);
     }
     public function create(){
@@ -28,12 +37,28 @@ class PostController extends Controller
             'imagen'=> 'required',
 
         ]);
-        Post::create([
+        // Post::create([
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'imagen' => $request->imagen,
+        //     'user_id' => auth()->user()->id,
+        // ]);
+
+        //OTRA FORMA
+        // $post=new Post([
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'imagen' => $request->imagen,
+        //     'user_id' => auth()->user()->id,
+        // ]);
+        // $post->save();
+        // OTRA FORMA
+        $request->user()->posts()->create([
             'title' => $request->title,
             'description' => $request->description,
             'imagen' => $request->imagen,
-            'user_id' => auth()->user()->id,
-        ]);
+            'user_id' => auth()->user()->id,    
+        ]);        
         return redirect()->route('profile', auth()->user()->username);
     }
 }

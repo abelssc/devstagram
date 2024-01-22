@@ -13,31 +13,27 @@
                 22 Siguiendo desde grondoy
             </p>
             <p class="text-gray-700">
-                2 Publicaciones 
+                {{$posts->count()}} Publicaciones 
             </p>
         </div>
     </div>
     <div class="max-w-3xl mx-auto">
-        <h2 class="text-2xl font-bold text-gray-700">Publicaciones</h2>
+        <h2 class="text-2xl font-bold text-gray-700 mb-8">Publicaciones</h2>
         <div class="flex flex-wrap">
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/1.jpg')}}" alt="">
-            </div>
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/2.jpg')}}" alt="">
-            </div>
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/3.jpg')}}" alt="">
-            </div>
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/4.jpg')}}" alt="">
-            </div>
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/5.jpg')}}" alt="">
-            </div>
-            <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                <img src="{{asset('img/posts/6.jpg')}}" alt="">
-            </div>
+            @forelse ($posts as $post)
+                <div class="w-full sm:w-6/12 md:w-4/12 p-2">
+                    <img src="{{asset('img/posts/'.$post->imagen)}}" alt="">
+                </div>
+            @empty
+                <p class="text-gray-700 w-full text-center">No hay publicaciones</p>
+            @endforelse            
+        </div>
+        {{-- paginacion con taildwind y blade --}}
+        <div>
+            {{-- forma 1 --}}
+            {{-- {{$posts->links('pagination::tailwind')}} --}}
+            {{-- forma 2 --}}
+            {{($user->posts()->paginate(1))->links('pagination::tailwind')}}
         </div>
     </div>
 @endsection
