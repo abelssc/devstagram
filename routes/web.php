@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\auth\LoginController;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\ImagenController;
@@ -28,7 +29,9 @@ Route::post('/register', [RegisterController::class, 'store'])->name('register')
 
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+Route::post('/comments/store', [CommentController::class, 'store'])->name('comments.store');
 
 Route::post('/imagenes', [ImagenController::class, 'store'])->name('imagenes.store');
 

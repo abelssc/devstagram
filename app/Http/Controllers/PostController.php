@@ -10,10 +10,10 @@ class PostController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth']);
+        $this->middleware(['auth'])->except(['index','show']);
     }
     public function index(User $user){
-        $posts=Post::where('user_id', $user->id)->paginate(1);
+        $posts=Post::where('user_id', $user->id)->paginate(20);
 
 
         return view('profile', [
@@ -21,8 +21,9 @@ class PostController extends Controller
             'posts' => $posts,
         ]);
     }
-    public function show(Post $post){
+    public function show(User $user,Post $post){
         return view('posts.show', [
+            'user' => $user,
             'post' => $post,
         ]);
     }

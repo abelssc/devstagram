@@ -22,7 +22,9 @@
         <div class="flex flex-wrap">
             @forelse ($posts as $post)
                 <div class="w-full sm:w-6/12 md:w-4/12 p-2">
-                    <img src="{{asset('img/posts/'.$post->imagen)}}" alt="">
+                    <a href="{{route('posts.show',['user'=>$user,'post'=>$post])}}">
+                        <img src="{{asset('img/posts/'.$post->imagen)}}" alt="">
+                    </a>
                 </div>
             @empty
                 <p class="text-gray-700 w-full text-center">No hay publicaciones</p>
@@ -31,9 +33,9 @@
         {{-- paginacion con taildwind y blade --}}
         <div>
             {{-- forma 1 --}}
-            {{-- {{$posts->links('pagination::tailwind')}} --}}
+            {{$posts->links('pagination::tailwind')}}
             {{-- forma 2 --}}
-            {{($user->posts()->paginate(1))->links('pagination::tailwind')}}
+            <!-- {{($user->posts()->paginate(20))->links('pagination::tailwind')}} -->
         </div>
     </div>
 @endsection
