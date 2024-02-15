@@ -6,8 +6,8 @@
         <div class="w-full sm:w-6/12 md:w-8/12">
             <img class="w-full" src="{{asset('img/posts/'.$post->imagen)}}" alt="">
         </div>
-        <div class="w-full sm:w-6/12 md:w-4/12 flex flex-col gap-4 p-4">
-            <div>
+        <div class="w-full sm:w-6/12 md:w-4/12 flex flex-col gap-4 h-full bg-white shadow max-h-[600px] overflow-y-scroll">
+            <div class="sticky top-0 bg-white p-4 shadow-sm">
                 <div class="flex gap-3 items-center">
                     <img class="w-8" src="{{asset('img/users/sin-foto.webp')}}" alt="">
                     <a href="{{route('profile',$user)}}">{{$user->username}}</a>
@@ -18,7 +18,7 @@
                 </div>
             </div>
           
-            <div class="flex flex-col gap-4 h-full">
+            <div class="flex flex-col gap-4 px-4 h-full">
                 @forelse ($post->comments as $comment) 
                 <div>
                     <div class="flex gap-3 items-center">
@@ -36,7 +36,7 @@
                 </div>
                 @endforelse
             </div>
-            <div>
+            <div class="sticky bottom-0 bg-white p-4 border-t border-t-gray-50">
                 <div class="flex gap-4">
                     <button>
                         <svg width="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
