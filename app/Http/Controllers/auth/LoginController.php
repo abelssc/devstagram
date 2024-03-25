@@ -17,7 +17,7 @@ class LoginController extends Controller
         if(!auth()->attempt($request->only('email', 'password'), $request->remember)){
             return back()->with('status', 'Credenciales incorrectas');
         }
-        return redirect()->route('profile', auth()->user()->username);
+        return redirect()->route('profile.index', auth()->user()->username);
     }
 
     public function logout(){

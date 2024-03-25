@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -23,6 +24,8 @@ class User extends Authenticatable
         'email',
         'password',
         'username',
+        // porque me permite rellenar la imagen?
+        //creo que esto solo restringue para peticiones apirest
     ];
 
 
@@ -57,4 +60,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(Comment::class);
     }
+    public function likes(): HasMany{
+        return $this->hasMany(Like::class);
+    }
+    public function followers(): BelongsToMany{
+        return $this->belongsToMany(User::class,'followers','user_id','follower_id');
+    }
+    public function followings(): BelongsToMany{
+        return $this->belongsToMany(User::class,'followers','follower_id','user_id');
+    }
+    #esta funcion obtiene los seguidores de la pagina actual, y busca entre los seguidores si hay uno con el id igual al usuario autenticado
+    public function siguiendo(User $user):bool{
+        return $this->followers->contains($user->id);
+        #se lee: entre los seguidores de este perfil hay uno que contiene el id del usuario autenticado?
+    }
+    #este metodo es similar al siguiente:
+    #$user->followers()->where('follower_id',auth()->user()->id)->first()
 }

@@ -7,6 +7,7 @@
     @stack('styles')
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
+    @livewireStyles
 </head>
 <body class="bg-gray-100">
     <header class="p-5 border-b bg-white shadow">
@@ -24,7 +25,7 @@
                         Crear
                     </a>
                     <a 
-                        href="{{ route('profile',['user'=>auth()->user()->username])  }}">
+                        href="{{ route('profile.index',['user'=>auth()->user()->username])  }}">
                         Hola <span class="font-medium">{{auth()->user()->username}}</span>
                     </a>
                     <form action="{{ route('logout') }}" method="POST" class="inline">
@@ -55,5 +56,6 @@
             </p>
         </div>
     </footer>
+    @livewireScripts
 </body>
 </html>

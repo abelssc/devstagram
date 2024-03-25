@@ -41,6 +41,6 @@ class RegisterController extends Controller
         // forma 3 de loguear al usuario
         // auth()->login($user);
 
-        return redirect()->route('profile', $user->username);
+        return redirect()->route('profile.index', $user->username);
     }
 }
